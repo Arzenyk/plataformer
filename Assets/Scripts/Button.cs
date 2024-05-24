@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class Button : MonoBehaviour
 {
+    public Transform Plataforma;
+
     public Rigidbody buttonTopRigid;
     public Transform buttonTop;
     public Transform buttonLowerLimit;
@@ -42,6 +44,11 @@ public class Button : MonoBehaviour
         }
         else
             upperLowerDiff = buttonUpperLimit.position.y - buttonLowerLimit.position.y;
+
+        if (Plataforma != null)
+        {
+            Plataforma.gameObject.SetActive(false);
+        }
     }
 
     void Update()
@@ -73,6 +80,11 @@ public class Button : MonoBehaviour
         pressedSound.pitch = 1;
         pressedSound.Play();
         onPressed.Invoke();
+
+        if (Plataforma != null)
+        {
+            Plataforma.gameObject.SetActive(true);
+        }
     }
 
     void Released()
