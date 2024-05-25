@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         if (i >= 7)
         {
             winCondition = true;
+            SceneManager.LoadScene(1);
         }
     }
 
