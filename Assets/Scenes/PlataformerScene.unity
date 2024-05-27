@@ -306,6 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 15
   speed: 7
+  iceSpeed: 5
   playerNumber: 5
   rb: {fileID: 0}
   floor:
@@ -455,6 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 15
   speed: 5
+  iceSpeed: 5
   playerNumber: 4
   rb: {fileID: 0}
   floor:
@@ -489,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 15
   speed: 14
+  iceSpeed: 5
   playerNumber: 6
   rb: {fileID: 0}
   floor:
@@ -1129,6 +1132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 10
   speed: 5
+  iceSpeed: 5
   playerNumber: 7
   rb: {fileID: 0}
   floor:
@@ -1150,6 +1154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 10
   speed: 5
+  iceSpeed: 5
   playerNumber: 7
   rb: {fileID: 0}
   floor:
@@ -1181,9 +1186,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &535912386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,6 +2917,16 @@ PrefabInstance:
       propertyPath: downDistanceRay
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 372997879377743193, guid: db839a2aee9927c48a92690dfe095aa5,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 372997879377743193, guid: db839a2aee9927c48a92690dfe095aa5,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 372997879377743206, guid: db839a2aee9927c48a92690dfe095aa5,
         type: 3}
       propertyPath: m_Name
@@ -3132,6 +3147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Plataforma: {fileID: 1677444235}
+  Puerta: {fileID: 0}
   buttonTopRigid: {fileID: 1464396307}
   buttonTop: {fileID: 1464396306}
   buttonLowerLimit: {fileID: 535912387}
@@ -3573,6 +3589,16 @@ PrefabInstance:
       propertyPath: downDistanceRay
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1889116040175860655, guid: 26ddec9cbcbad444ba256dff5e657942,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889116040175860655, guid: 26ddec9cbcbad444ba256dff5e657942,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1889116040175860657, guid: 26ddec9cbcbad444ba256dff5e657942,
         type: 3}
       propertyPath: m_Name
@@ -3609,6 +3635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 12
   speed: 5
+  iceSpeed: 5
   playerNumber: 3
   rb: {fileID: 0}
   floor:
@@ -4282,6 +4309,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player0
       objectReference: {fileID: 0}
+    - target: {fileID: 660359024085417087, guid: e106a8ab09f51cf4dae2fa3ad661a50c,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 660359024085417087, guid: e106a8ab09f51cf4dae2fa3ad661a50c,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4349,6 +4386,16 @@ PrefabInstance:
         type: 3}
       propertyPath: playerNumber
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 789777718845295434, guid: 3750161a6971bee4b9258150b5ffe094,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 789777718845295434, guid: 3750161a6971bee4b9258150b5ffe094,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 789777718845295439, guid: 3750161a6971bee4b9258150b5ffe094,
         type: 3}
@@ -4433,6 +4480,16 @@ PrefabInstance:
       propertyPath: playerNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6000912066467331766, guid: 7030d8144298b064c875e9279e5e5918,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000912066467331766, guid: 7030d8144298b064c875e9279e5e5918,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6000912066467331765, guid: 7030d8144298b064c875e9279e5e5918, type: 3}
     m_RemovedGameObjects: []
@@ -4451,6 +4508,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1334826840}
     m_Modifications:
+    - target: {fileID: 7784468982241214018, guid: 88c9987b45506424782c08f1b466ba41,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784468982241214018, guid: 88c9987b45506424782c08f1b466ba41,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7784468982241214019, guid: 88c9987b45506424782c08f1b466ba41,
         type: 3}
       propertyPath: speed

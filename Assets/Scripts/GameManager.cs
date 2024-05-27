@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         if (i >= 6)
         {
             winCondition = true;
-            //SceneManager.LoadScene(1);
+            SceneManager.LoadScene(1);
         }
     }
 

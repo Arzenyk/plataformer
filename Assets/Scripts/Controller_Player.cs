@@ -6,30 +6,28 @@ using UnityEngine;
 public class Controller_Player : MonoBehaviour
 {
     public float jumpForce = 10;
-
     public float speed = 5;
-
+    public float iceSpeed = 5;  // Velocidad en el hielo
     public int playerNumber;
 
     public Rigidbody rb;
-
     private BoxCollider col;
 
     public LayerMask floor;
 
-    internal RaycastHit leftHit,rightHit,downHit;
+    internal RaycastHit leftHit, rightHit, downHit;
+    public float distanceRay, downDistanceRay;
 
-    public float distanceRay,downDistanceRay;
-
-    private bool canMoveLeft, canMoveRight,canJump;
+    private bool canMoveLeft, canMoveRight, canJump;
     internal bool onFloor;
     private Vector3 originalPosition;
+    private bool isOnIce = false;  // Flag para saber si está en el hielo
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<BoxCollider>();
-        rb.constraints = RigidbodyConstraints.FreezePositionX| RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotation;
+        rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         originalPosition = transform.position;
     }
 
@@ -71,7 +69,6 @@ public class Controller_Player : MonoBehaviour
             {
                 canJump = false;
             }
-
         }
         else
         {
@@ -92,47 +89,44 @@ public class Controller_Player : MonoBehaviour
         }
     }
 
-
-
-
     public virtual bool IsOnSomething()
     {
-        return Physics.BoxCast(transform.position, new Vector3(transform.localScale.x * 0.9f, transform.localScale.y/3,transform.localScale.z*0.9f), Vector3.down, out downHit, Quaternion.identity, downDistanceRay);
+        return Physics.BoxCast(transform.position, new Vector3(transform.localScale.x * 0.9f, transform.localScale.y / 3, transform.localScale.z * 0.9f), Vector3.down, out downHit, Quaternion.identity, downDistanceRay);
     }
 
     public virtual bool SomethingRight()
     {
-        Ray landingRay = new Ray(new Vector3(transform.position.x,transform.position.y-(transform.localScale.y / 2.2f),transform.position.z), Vector3.right);
+        Ray landingRay = new Ray(new Vector3(transform.position.x, transform.position.y - (transform.localScale.y / 2.2f), transform.position.z), Vector3.right);
         Debug.DrawRay(landingRay.origin, landingRay.direction, Color.green);
-        return Physics.Raycast(landingRay, out rightHit, transform.localScale.x/1.8f);
+        return Physics.Raycast(landingRay, out rightHit, transform.localScale.x / 1.8f);
     }
 
     public virtual bool SomethingLeft()
     {
-        Ray landingRay = new Ray(new Vector3(transform.position.x, transform.position.y - (transform.localScale.y/2.2f), transform.position.z), Vector3.left);
+        Ray landingRay = new Ray(new Vector3(transform.position.x, transform.position.y - (transform.localScale.y / 2.2f), transform.position.z), Vector3.left);
         Debug.DrawRay(landingRay.origin, landingRay.direction, Color.green);
-        return Physics.Raycast(landingRay, out leftHit, transform.localScale.x/1.8f);
+        return Physics.Raycast(landingRay, out leftHit, transform.localScale.x / 1.8f);
     }
 
     private void Movement()
     {
-        if (Input.GetKey(KeyCode.A) && canMoveLeft)
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float currentSpeed = isOnIce ? iceSpeed : speed;
+
+        // Aplicar la velocidad basada en la entrada del teclado
+        rb.velocity = new Vector3(horizontalInput * currentSpeed, rb.velocity.y, 0);
+
+        // Verificar si se está presionando alguna tecla de movimiento y si el jugador puede moverse en esa dirección
+        if (horizontalInput < 0 && !canMoveLeft)
         {
-                rb.velocity = new Vector3(1 * -speed , rb.velocity.y, 0);
+            rb.velocity = new Vector3(0, rb.velocity.y, 0); // Detener el movimiento hacia la izquierda si no puede moverse en esa dirección
         }
-        else if (Input.GetKey(KeyCode.D) && canMoveRight)
+        else if (horizontalInput > 0 && !canMoveRight)
         {
-                rb.velocity = new Vector3(1 * speed, rb.velocity.y, 0);
+            rb.velocity = new Vector3(0, rb.velocity.y, 0); // Detener el movimiento hacia la derecha si no puede moverse en esa dirección
         }
-        else
-        {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        }
-        //if (!canMoveLeft)
-        //    rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        //if (!canMoveRight)
-        //    rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
+
 
     public virtual void Jump()
     {
@@ -160,7 +154,11 @@ public class Controller_Player : MonoBehaviour
         {
             transform.position = originalPosition;
         }
-
+        if (collision.gameObject.CompareTag("Ice"))
+        {
+            isOnIce = true;
+            Debug.Log("On Ice: " + isOnIce);  // Depuración
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -168,6 +166,11 @@ public class Controller_Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             onFloor = false;
+        }
+        if (collision.gameObject.CompareTag("Ice"))
+        {
+            isOnIce = false;
+            Debug.Log("Off Ice: " + isOnIce);  // Depuración
         }
     }
 }

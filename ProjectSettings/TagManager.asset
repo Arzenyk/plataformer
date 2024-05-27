@@ -9,6 +9,7 @@ TagManager:
   - Target
   - Trampoline
   - Enemigo
+  - Ice
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Player
   - Floor
   - Character
-  - 
-  - 
+  - iceLayer
+  - Ice
   - 
   - 
   - 
