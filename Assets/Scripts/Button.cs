@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Button : MonoBehaviour
 {
     public Transform Plataforma;
+    public Transform Puerta;
 
     public Rigidbody buttonTopRigid;
     public Transform buttonTop;
@@ -84,6 +85,10 @@ public class Button : MonoBehaviour
         if (Plataforma != null)
         {
             Plataforma.gameObject.SetActive(true);
+        }
+        if(Puerta != null)
+        {
+            Puerta.gameObject.SetActive(false);
         }
     }
 

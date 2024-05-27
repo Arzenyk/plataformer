@@ -23,12 +23,14 @@ public class Controller_Player : MonoBehaviour
 
     private bool canMoveLeft, canMoveRight,canJump;
     internal bool onFloor;
+    private Vector3 originalPosition;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<BoxCollider>();
         rb.constraints = RigidbodyConstraints.FreezePositionX| RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotation;
+        originalPosition = transform.position;
     }
 
     public virtual void FixedUpdate()
@@ -153,6 +155,10 @@ public class Controller_Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             onFloor = true;
+        }
+        if (collision.gameObject.CompareTag("Enemigo"))
+        {
+            transform.position = originalPosition;
         }
 
     }

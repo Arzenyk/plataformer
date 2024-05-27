@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Target
   - Trampoline
+  - Enemigo
   layers:
   - Default
   - TransparentFX
